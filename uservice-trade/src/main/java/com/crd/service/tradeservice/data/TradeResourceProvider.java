@@ -3,7 +3,7 @@ package com.crd.service.tradeservice.data;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.crd.interfaces.grpc.Trade;
+import com.crd.common.grpc.Trade;
 
 public class TradeResourceProvider {
     public static List<Trade> getTradeListFromTradeSource() {

@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.crd.service</groupId>
-	<artifactId>market-data-service</artifactId>
+	<artifactId>uservice-market-data</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>market-data-service</name>
-	<description>Market Data Service</description>
+	<name>uservice-market-data</name>
+	<description>Market Data MicroService</description>
 	<properties>
 		<java.version>17</java.version>
 		<spring-cloud.version>2021.0.4</spring-cloud.version>

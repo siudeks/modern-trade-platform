@@ -9,11 +9,11 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.crd.service</groupId>
-	<artifactId>trade-service</artifactId>
+	<artifactId>uservice-trade</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
-	<name>trade-service</name>
-	<description>Trade Service</description>
+	<name>uservice-trade</name>
+	<description>Trade MicroService</description>
 	<properties>
 		<java.version>17</java.version>
 		<spring-cloud.version>2021.0.4</spring-cloud.version>
@@ -47,8 +47,8 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.crd.service</groupId>
-			<artifactId>interface-service</artifactId>
+			<groupId>com.crd.common</groupId>
+			<artifactId>uservice-common</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 

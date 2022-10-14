@@ -6,8 +6,8 @@ import org.springframework.stereotype.Service;
 
 import com.google.protobuf.Descriptors.FieldDescriptor;
 
-import com.crd.interfaces.grpc.Calculation;
-import com.crd.interfaces.grpc.CalculationServiceGrpc;
+import com.crd.common.grpc.Calculation;
+import com.crd.common.grpc.CalculationServiceGrpc;
 import net.devh.boot.grpc.client.inject.GrpcClient;
 
 @Service

@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.crd.service</groupId>
-	<artifactId>calculation-service</artifactId>
+	<artifactId>uservice-calculation</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>calculation-service</name>
-	<description>Calculation Service</description>
+	<name>uservice-calculation</name>
+	<description>Calculation MicroService</description>
 	<properties>
 		<java.version>17</java.version>
 		<spring-cloud.version>2021.0.4</spring-cloud.version>

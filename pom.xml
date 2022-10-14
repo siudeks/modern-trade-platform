@@ -11,11 +11,11 @@
 	<url>http://maven.apache.org</url>
 
      <modules>
-	 <module>services/interface-service</module>
-	 <module>services/trade-service</module>
-     <module>services/calculation-service</module>
-     <module>services/market-data-service</module>
-     <module>services/eureka-server</module>
+	 <module>uservice-common</module>
+	 <module>uservice-trade</module>
+     <module>uservice-calculation</module>
+     <module>uservice-market-data</module>
+     <module>eureka-server</module>
    </modules>
 
 </project>
