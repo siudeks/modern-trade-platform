@@ -1,0 +1,19 @@
+syntax = "proto3";
+option java_multiple_files = true;
+package com.crd.interfaces.grpc;
+
+message Calculation {
+    int64 tradeId = 1;
+    string tradeDate = 2;
+    string tradeCounterparty = 3;
+    string tradeNotional = 4;
+    string tradeMaturity = 5;
+}
+
+// The Calculation Service definition.
+service CalculationService {
+    // Get trade By Trade ID
+    // IDL of unary RPCs where the client sends a single request to the server and gets a single response back, just like a normal function call.
+    rpc getCalculation (Calculation) returns (Calculation) {
+    }
+}
