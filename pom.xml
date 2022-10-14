@@ -15,6 +15,7 @@
 	 <module>uservice-trade</module>
      <module>uservice-calculation</module>
      <module>uservice-market-data</module>
+	 <module>uservice-lifecycle</module>
      <module>eureka-server</module>
    </modules>
 
