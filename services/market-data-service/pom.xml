@@ -14,7 +14,7 @@
 	<name>market-data-service</name>
 	<description>Market Data Service</description>
 	<properties>
-		<java.version>19</java.version>
+		<java.version>17</java.version>
 		<spring-cloud.version>2021.0.4</spring-cloud.version>
 	</properties>
 	<dependencies>
