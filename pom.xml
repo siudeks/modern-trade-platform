@@ -16,6 +16,7 @@
      <module>uservice-calculation</module>
      <module>uservice-market-data</module>
 	 <module>uservice-lifecycle</module>
+	 <module>business-api-gateway</module>
      <module>eureka-server</module>
    </modules>
 

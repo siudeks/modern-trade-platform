@@ -1,0 +1,42 @@
+syntax = "proto3";
+package com.crd.common.grpc;
+import "google/protobuf/any.proto";
+
+message CreateTradeRequest {
+  string name = 1;
+  string description = 2;
+  double price = 3;
+  string userId = 4;
+}
+
+message CreateProductResponse {
+  string productId = 1;
+}
+
+message GetProductRequest {
+  string productId = 1;
+}
+
+message GetProductResponse {
+  string name = 1;
+  string description = 2;
+  double price = 3;
+  string userId = 4;
+}
+
+message GetVersionRequest {
+
+}
+
+message GetVersionResponse {
+    string version = 1;
+}
+
+message ErrorDetail {
+  // Error code
+  string errorCode = 1;
+  //Error message
+  string message = 2;
+  // Additional metadata associated with the Error
+  map<string, string> metadata = 3;
+}
