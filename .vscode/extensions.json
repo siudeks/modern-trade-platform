@@ -1,6 +1,7 @@
 {
     "recommendations": [
         "editorconfig.editorconfig",
-        "vscjava.vscode-java-pack"
+        "vscjava.vscode-java-pack",
+        "Pivotal.vscode-spring-boot"
     ]
 }
