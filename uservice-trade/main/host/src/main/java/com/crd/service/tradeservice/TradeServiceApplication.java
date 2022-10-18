@@ -4,7 +4,6 @@ import java.util.concurrent.TimeUnit;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
 
 import io.grpc.netty.shaded.io.grpc.netty.NettyServerBuilder;
@@ -14,7 +13,6 @@ import net.devh.boot.grpc.server.serverfactory.GrpcServerConfigurer;
  * Main entry method for the service.
  */
 @SpringBootApplication
-@EnableEurekaClient
 public class TradeServiceApplication {
 
   public static void main(String[] args) {
