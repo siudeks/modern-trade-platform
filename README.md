@@ -3,13 +3,13 @@ Hello World trade application
 
 ## Naming convention for ...
 ### Root folders
-- libs-java - reusable code to reuse in uservices
+- libs-java - reusable code to reuse in uservices, deployed to external maven repository
 - service-* - folder with a local stack service, designed to be run by root docker-compose
 - uservice-* - seperated µservice designed to be compiled, developed and run separately. It may contains init-db subproject to apply database migration
+### Other folders
 - .api.rpc - definition of gRpc api, exposed in known-localtion for other services/.
 - .api.events - (not existing yet) proposed name for place of avro api, exposed in known-localtion for other services/.
-
-### Other elements
+### Other files
 - Dockerfile.local - image definition used just fo local development process, not to build final images
 
 ## How to run acceptance tests
