@@ -3,6 +3,7 @@ Hello World trade application
 
 ## Naming convention for ...
 ### Root folders
+- libs-java - reusable code to reuse in uservices
 - service-* - folder with a local stack service, designed to be run by root docker-compose
 - uservice-* - seperated µservice designed to be compiled, developed and run separately. It may contains init-db subproject to apply database migration
 - .api.rpc - definition of gRpc api, exposed in known-localtion for other services/.

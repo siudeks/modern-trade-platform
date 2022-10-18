@@ -1,0 +1,17 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.crd.service</groupId>
+    <artifactId>host-api-base</artifactId>
+    <version>0.0.0-LOCAL</version>
+    <relativePath/>
+  </parent>
+
+  <artifactId>trade-service-api</artifactId>
+  <packaging>jar</packaging>
+
+  <properties>
+    <protoSourceRoot>../.api.rpc</protoSourceRoot>
+  </properties>
+
+</project>
