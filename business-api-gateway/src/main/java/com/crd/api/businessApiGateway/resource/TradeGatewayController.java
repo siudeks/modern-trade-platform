@@ -1,6 +1,5 @@
 package com.crd.api.businessApiGateway.resource;
 
-import org.apache.logging.log4j.core.config.plugins.validation.constraints.NotBlank;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,7 +36,7 @@ public class TradeGatewayController {
     }
 
     @GetMapping("/{tradeId}")
-    public ResponseEntity<Trade> getTrade(@PathVariable @NotBlank String tradeId) {
+    public ResponseEntity<Trade> getTrade(@PathVariable String tradeId) {
         var trade = tradeService.getTrade(tradeId);
         return new ResponseEntity<>(trade, HttpStatus.CREATED);
     }
