@@ -10,22 +10,27 @@ import org.springframework.context.annotation.Bean;
 import io.grpc.netty.shaded.io.grpc.netty.NettyServerBuilder;
 import net.devh.boot.grpc.server.serverfactory.GrpcServerConfigurer;
 
+/**
+ * Main entry method for the service.
+ */
 @SpringBootApplication
 @EnableEurekaClient
 public class TradeServiceApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(TradeServiceApplication.class, args);
-	}
+  public static void main(String[] args) {
+    SpringApplication.run(TradeServiceApplication.class, args);
+  }
 
-	@Bean
-	public GrpcServerConfigurer keepAliveServerConfigurer() {
-		return serverBuilder -> {
-			if (serverBuilder instanceof NettyServerBuilder) {
-				((NettyServerBuilder) serverBuilder).keepAliveTime(30, TimeUnit.SECONDS)
-						.keepAliveTimeout(5, TimeUnit.SECONDS).permitKeepAliveWithoutCalls(true);
-			}
-		};
-	}
-
+  /**
+   * Keeps the GRPC server alive.
+   */
+  @Bean
+  public GrpcServerConfigurer keepAliveServerConfigurer() {
+    return serverBuilder -> {
+      if (serverBuilder instanceof NettyServerBuilder) {
+        ((NettyServerBuilder) serverBuilder).keepAliveTime(30, TimeUnit.SECONDS)
+          .keepAliveTimeout(5, TimeUnit.SECONDS).permitKeepAliveWithoutCalls(true);
+      }
+    };
+  }
 }
