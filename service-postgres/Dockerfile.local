@@ -1,4 +1,4 @@
-FROM postgres:11-alpine
+FROM postgres:14-alpine
 
 # Add localscripts which should be invoked when database is created
 ADD scripts/1_init_uservice_trade.sql /docker-entrypoint-initdb.d

@@ -3,6 +3,7 @@
 
 version: '3.8'
 
+# Simple short name to make logs shorter (default name is much longer as copied from folder name)
 name: cdr
 
 services:
@@ -29,7 +30,7 @@ services:
 
   uservice-trade-init-db:
     build:
-      context: uservice-trade/main
+      context: uservice-trade/
       dockerfile: ./init-db/Dockerfile.local
     environment:
       # well-known properties defined by init scripts of our postgresql
@@ -41,7 +42,7 @@ services:
       # Map local maven repo to speed up build by avoiding downloading maven dependencies each time to new docker image
       - ~/.m2/:/.m2
       # Map local source files to allow run init-db module from sources
-      - ./uservice-trade/main/:/uservice-trade-src
+      - ./uservice-trade/:/uservice-trade-src
     depends_on:
       postgres:
         condition: service_started

@@ -27,7 +27,7 @@ import lombok.SneakyThrows;
 class RollbackTest {
 
   @Container
-  static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:11")
+  static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:14")
           .withUsername("testcontainers")
           .withPassword("testcontainers")
           .withDatabaseName("testdb");
