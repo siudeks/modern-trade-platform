@@ -1,3 +1,5 @@
 {
-    "java.configuration.updateBuildConfiguration": "automatic"
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "java.checkstyle.configuration": "${workspaceFolder}/build-tools/src/main/resources/build-tools/google_checks_customized.xml",
+    "java.checkstyle.version": "10.3"
 }
