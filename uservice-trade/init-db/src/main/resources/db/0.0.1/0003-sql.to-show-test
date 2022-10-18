@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - changeSet:  
+      id:  sql-example  
+      author:  liquibase-docs  
+      changes:  
+        -  sql:
+            endDelimiter: \nGO
+            splitStatements: true
+            sql: select 1
+            stripComments: true

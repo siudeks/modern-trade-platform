@@ -1,0 +1,47 @@
+# Starts equivalent of 'external services' as much as we can. 
+# If something is not dockerizable, you should refer to proper DEV instances.
+
+version: '3.8'
+
+name: cdr
+
+services:
+  postgres:
+    build:
+      context: service-postgres
+      # specially prepared dockerfile to init database schemas per application
+      # in the same way how the expect in local stack
+      # and run init-db parts of all uservices
+      dockerfile: Dockerfile.local
+    environment:
+      # some master user and password. Please do not use it in any microservice.
+      # Instead, defined user / schema per each uservice.
+      - POSTGRES_USER=devlocaldb
+      - POSTGRES_PASSWORD=devlocaldb
+    ports:
+      - 5432:5432
+
+  init-local-sdk:
+    image: local-stack-java-sdk
+    build:
+      context: service-localsdk
+      dockerfile: Dockerfile.local
+
+  uservice-trade-init-db:
+    build:
+      context: uservice-trade/main
+      dockerfile: ./init-db/Dockerfile.local
+    environment:
+      # well-known properties defined by init scripts of our postgresql
+      - DATABASE_USERNAME=uservice_trade_role_name
+      - DATABASE_PASSWORD=uservice_trade_role_password
+      - DATABASE_SCHEMA=uservice_trade
+      - DATABASE_JDBC=jdbc:postgresql://postgres:5432/devlocaldb
+    volumes:
+      # Map local maven repo to speed up build by avoiding downloading maven dependencies each time to new docker image
+      - ~/.m2/:/.m2
+      # Map local source files to allow run init-db module from sources
+      - ./uservice-trade/main/:/uservice-trade-src
+    depends_on:
+      postgres:
+        condition: service_started

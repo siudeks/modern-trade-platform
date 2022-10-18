@@ -1,0 +1,8 @@
+FROM postgres:11-alpine
+
+# Add localscripts which should be invoked when database is created
+ADD scripts/1_init_uservice_trade.sql /docker-entrypoint-initdb.d
+
+RUN chmod a+r /docker-entrypoint-initdb.d/*
+
+EXPOSE 5432

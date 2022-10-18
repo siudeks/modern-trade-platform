@@ -1,0 +1,11 @@
+{
+    "recommendations": [
+        "vscode-icons-team.vscode-icons",
+        "redhat.vscode-yaml",
+        "shengchen.vscode-checkstyle",
+        "sonarsource.sonarlint-vscode",
+        "vscjava.vscode-java-pack",
+        "vscjava.vscode-lombok",
+        "Pivotal.vscode-spring-boot"
+    ]
+}

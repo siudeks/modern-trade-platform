@@ -1,0 +1,3 @@
+databaseChangeLog:
+  - includeAll:
+      path: db/0.0.1/
