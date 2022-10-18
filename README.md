@@ -4,8 +4,7 @@ Hello World trade application
 ## Naming convention for ...
 ### Root folders
 - service-* - folder with a local stack service, designed to be run by root docker-compose
-- uservice-* - seperated µservice designed to be compiled, developed and run separately
-- libs - place for additional projects, shared / between by uservices
+- uservice-* - seperated µservice designed to be compiled, developed and run separately. It may contains init-db subproject to apply database migration
 ### Other elements
 - Dockerfile.local - image definition used just fo local development process, not to build final images
 

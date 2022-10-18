@@ -29,7 +29,7 @@ services:
 
   uservice-trade-init-db:
     build:
-      context: uservice-trade
+      context: uservice-trade/main
       dockerfile: ./init-db/Dockerfile.local
     environment:
       # well-known properties defined by init scripts of our postgresql
@@ -41,7 +41,7 @@ services:
       # Map local maven repo to speed up build by avoiding downloading maven dependencies each time to new docker image
       - ~/.m2/:/.m2
       # Map local source files to allow run init-db module from sources
-      - ./uservice-trade/:/uservice-trade-src
+      - ./uservice-trade/main/:/uservice-trade-src
     depends_on:
       postgres:
         condition: service_started

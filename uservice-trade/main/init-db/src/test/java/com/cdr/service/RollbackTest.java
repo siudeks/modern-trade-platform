@@ -1,5 +1,6 @@
 package com.cdr.service;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
@@ -52,7 +53,10 @@ class RollbackTest {
     @Cleanup
     var liquibase = new Liquibase("db/changelog-master.yaml", new ClassLoaderResourceAccessor(), database);
     var initialTag = "v0"; // well-known tag in database used for rollback tests
-    liquibase.rollback(initialTag, (String) null);
+    Assertions
+        .assertThatCode(() -> liquibase.rollback(initialTag, (String) null))
+        .as("All operation should include rollback operation")
+        .doesNotThrowAnyException();
   }
 
 }
