@@ -11,7 +11,7 @@
   </properties>
 
   <modules>
-    <module>host-parent</module>
+    <module>host-base</module>
     <module>host-api-base</module>
   </modules>
 
