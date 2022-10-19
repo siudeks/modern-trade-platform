@@ -17,3 +17,14 @@ Hello World trade application
 - run local stack of services **docker-compose up** or, to recompile and run **docker-compose up --build**
 - TBD: open and run test project
 - TBD: Review result of gherkin reports
+
+## Avoid clas of ports:
+Rule: Use scope 18*** to simplify our management of ports
+### Business Api Gateway
+- dapr app id: uservice-trade
+- HTTP: 18010
+- GRPC: 18011
+### TradeService
+- dapr app id: uservice-trade
+- HTTP: 18120
+- GRPC: 18121
