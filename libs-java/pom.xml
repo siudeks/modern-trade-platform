@@ -7,7 +7,7 @@
   <packaging>pom</packaging>
 
   <modules>
-    <!-- no shared libraries yet -->
+    <module>build-tools</module>
   </modules>
 
 </project>

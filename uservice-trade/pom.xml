@@ -9,7 +9,6 @@
   <modules>
     <module>host</module>
     <module>init-db</module>
-    <module>build-tools</module>
   </modules>
 
   <properties>
