@@ -18,8 +18,8 @@ Hello World trade application
 - TBD: open and run test project
 - TBD: Review result of gherkin reports
 
-## Avoid clas of ports:
-Rule: Use scope 18*** to simplify our management of ports
+## Avoid clash of ports:
+Rule: Use scope 18*** to simplify our management of ports, use different ports to run uservices locally
 ### Business Api Gateway
 - dapr app id: uservice-trade
 - HTTP: 18010
