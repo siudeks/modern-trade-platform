@@ -7,7 +7,6 @@
   <packaging>pom</packaging>
 
   <modules>
-    <module>host-api</module>
     <module>host</module>
     <module>init-db</module>
     <module>build-tools</module>
@@ -29,6 +28,11 @@
     <spring-boot.version>2.7.4</spring-boot.version>
     <java.version>17</java.version>
     <spring-cloud.version>2021.0.4</spring-cloud.version>
+
+    <!--
+      Api version 
+    -->
+    <api.version>0.0.0-LOCAL</api.version>
   </properties>
 
   <dependencyManagement>
@@ -36,8 +40,8 @@
 
       <dependency>
         <groupId>com.crd.service</groupId>
-        <artifactId>trade-service-api</artifactId>
-        <version>${project.version}</version>
+        <artifactId>uservice-trade.api</artifactId>
+        <version>${api.version}</version>
       </dependency>
       
       <dependency>

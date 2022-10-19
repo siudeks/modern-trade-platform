@@ -1,13 +1,205 @@
 <project>
-	<modelVersion>4.0.0</modelVersion>
+  <modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.crd.api</groupId>
-	<artifactId>business-api-gateway-parent</artifactId>
+  <groupId>com.crd.api</groupId>
+  <artifactId>business-api-gateway-parent</artifactId>
   <version>${revision}</version>
   <packaging>pom</packaging>
 
   <modules>
     <module>host</module>
   </modules>
+
+  <properties>
+    <!-- Enable Reproducible Builds mode for plugins
+    https://maven.apache.org/guides/mini/guide-reproducible-builds.html
+    -->
+    <project.build.outputTimestamp>10</project.build.outputTimestamp>
+
+    <!--
+      Disable warning
+      [WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent
+    !-->
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+    <spring-boot.version>2.7.4</spring-boot.version>
+    <java.version>17</java.version>
+    <spring-cloud.version>2021.0.4</spring-cloud.version>
+
+    <!--
+      Api version 
+    -->
+    <api.version>0.0.0-LOCAL</api.version>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+
+      <dependency>
+        <groupId>com.crd.service</groupId>
+        <artifactId>uservice-trade.api</artifactId>
+        <version>${api.version}</version>
+      </dependency>
+  
+
+      <dependency>
+        <groupId>com.crd.service</groupId>
+        <artifactId>uservice-trade.api</artifactId>
+        <version>${api.version}</version>
+      </dependency>
+      
+      <dependency>
+        <groupId>io.dapr</groupId>
+        <artifactId>dapr-sdk</artifactId>
+        <version>1.7.0</version>
+      </dependency>
+      <!--
+        DAPR requires also extra dependency to solve runtime startup issue
+        https://github.com/dapr/java-sdk/issues/515#issuecomment-800435671
+      
+      <dependency>
+        <groupId>com.squareup.okhttp3</groupId>
+        <artifactId>okhttp</artifactId>
+        <version>4.10.0</version>
+      </dependency> 
+      -->
+
+      <dependency>
+        <groupId>com.tngtech.archunit</groupId>
+        <artifactId>archunit-junit5</artifactId>
+        <version>1.0.0</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.testcontainers</groupId>
+        <artifactId>testcontainers-bom</artifactId>
+        <version>1.17.5</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>${spring-boot.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-dependencies</artifactId>
+        <version>${spring-cloud.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-maven-plugin</artifactId>
+          <version>${spring-boot.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.liquibase</groupId>
+          <artifactId>liquibase-maven-plugin</artifactId>
+          <version>4.10.0</version>
+          <configuration>
+            <propertyFileWillOverride>true</propertyFileWillOverride>
+            <propertyFile>src/main/resources/db/liquibase.properties</propertyFile>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <version>3.1.2</version>
+        <executions>
+          <execution>
+            <phase>process-sources</phase>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <configLocation>build-tools/google_checks_customized.xml</configLocation>
+          <violationSeverity>warning</violationSeverity>
+          <failOnViolation>true</failOnViolation>
+        </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>com.puppycrawl.tools</groupId>
+            <artifactId>checkstyle</artifactId>
+            <version>10.3</version>
+          </dependency>
+          <dependency>
+            <groupId>com.crd.service</groupId>
+            <artifactId>build-tools</artifactId>
+            <version>0.0.0</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.10.1</version>
+        <configuration>
+          <parameters>true</parameters>
+          <release>${java.version}</release>
+        </configuration>
+      </plugin>
+
+      <!-- Plugin required to run JUnit5 tests. -->
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.0.0-M7</version>
+        <configuration>
+          <includes>
+            <include>*Spec.java</include>
+            <include>*Tests.java</include>
+            <include>*Test.java</include>
+          </includes>
+        </configuration>
+      </plugin>
+
+      <!-- 
+        Required by CI friendly multimodule maven project.
+        More: https://maven.apache.org/maven-ci-friendly.html#multi-module-setup
+      -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>flatten-maven-plugin</artifactId>
+        <version>1.3.0</version>
+        <configuration>
+          <updatePomFile>true</updatePomFile>
+          <flattenMode>resolveCiFriendliesOnly</flattenMode>
+        </configuration>
+        <executions>
+          <execution>
+            <id>flatten</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>flatten</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>flatten.clean</id>
+            <phase>clean</phase>
+            <goals>
+              <goal>clean</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+    </plugins>
+  </build>
 
 </project>
