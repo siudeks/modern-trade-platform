@@ -1,0 +1,16 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.crd.service</groupId>
+    <artifactId>uservice-parent.api</artifactId>
+    <version>${revision}</version>
+  </parent>
+
+  <artifactId>uservice-calculation.api</artifactId>
+  <packaging>jar</packaging>
+
+  <properties>
+    <protoSourceRoot>../../api-grpc/uservice-calculation.api</protoSourceRoot>
+  </properties>
+
+</project>

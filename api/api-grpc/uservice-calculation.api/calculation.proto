@@ -1,0 +1,12 @@
+syntax = "proto3";
+option java_multiple_files = true;
+package com.crd.common.grpc;
+
+import "calculation_resources.proto";
+
+// The Calculation Service definition.
+service CalculationService {
+    // Get the price of a trade
+    rpc getPrice (PriceRequest) returns (PriceResponse) {
+    }
+}
