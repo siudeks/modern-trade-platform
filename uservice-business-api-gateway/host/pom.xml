@@ -22,6 +22,11 @@
 
     <dependency>
       <groupId>com.crd.service</groupId>
+      <artifactId>uservice-calculation.api</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>com.crd.service</groupId>
       <artifactId>uservice-trade.api</artifactId>
     </dependency>
 

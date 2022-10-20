@@ -1,0 +1,18 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"appId": "uservice-calculation",
+			"appPort": 18221,
+			"appProtocol": "grpc",
+			"componentsPath": "../.components",
+			"label": "dapr-debug",
+			"type": "dapr"
+		},
+		{
+			"appId": "uservice-calculation",
+			"label": "daprd-down",
+			"type": "daprd-down"
+		}
+	]
+}

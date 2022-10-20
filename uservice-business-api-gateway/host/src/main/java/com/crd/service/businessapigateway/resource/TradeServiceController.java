@@ -19,7 +19,7 @@ import com.crd.service.businessapigateway.application.service.TradeService;
  */
 @RestController
 @RequestMapping(value = "/trade")
-public class TradeGatewayController {
+public class TradeServiceController {
   @Autowired
   private TradeService tradeService;
 

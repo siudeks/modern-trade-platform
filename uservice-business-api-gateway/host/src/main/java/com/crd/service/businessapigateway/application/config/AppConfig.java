@@ -3,7 +3,9 @@ package com.crd.service.businessapigateway.application.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.crd.service.businessapigateway.application.service.CalculationService;
 import com.crd.service.businessapigateway.application.service.TradeService;
+import com.crd.service.businessapigateway.application.service.impl.CalculationServiceImpl;
 import com.crd.service.businessapigateway.application.service.impl.TradeServiceImpl;
 
 import io.grpc.ManagedChannel;
@@ -16,11 +18,21 @@ import io.grpc.ManagedChannelBuilder;
 public class AppConfig {
 
   /**
-   * Build managed channel for GRPC connection.
+   * Build managed channel for Trade GRPC connection.
    */
   @Bean
-  public ManagedChannel managedChannel() {
-    return ManagedChannelBuilder.forAddress(applicationProperties().getHost(), applicationProperties().getPort())
+  public ManagedChannel tradeManagedChannel() {
+    return ManagedChannelBuilder.forAddress(tradeServiceProperties().getHost(), tradeServiceProperties().getPort())
+      .usePlaintext()
+      .build();
+  }
+
+  /**
+   * Build managed channel for Calculation GRPC connection.
+   */
+  @Bean
+  public ManagedChannel calculationManagedChannel() {
+    return ManagedChannelBuilder.forAddress(calculationServiceProperties().getHost(), calculationServiceProperties().getPort())
       .usePlaintext()
       .build();
   }
@@ -30,14 +42,30 @@ public class AppConfig {
    */
   @Bean
   public TradeService tradeService() {
-    return new TradeServiceImpl(managedChannel());
+    return new TradeServiceImpl(tradeManagedChannel());
   }
 
   /**
-   * Get the application properties.
+   * Get the calculation service impelementation.
    */
   @Bean
-  public ApplicationProperties applicationProperties() {
-    return new ApplicationProperties();
+  public CalculationService calculationService() {
+    return new CalculationServiceImpl(calculationManagedChannel());
+  }
+
+  /**
+   * Get the trade service properties.
+   */
+  @Bean
+  public TradeServiceProperties tradeServiceProperties() {
+    return new TradeServiceProperties();
+  }
+
+  /**
+   * Get the calculation service properties.
+   */
+  @Bean
+  public CalculationServiceProperties calculationServiceProperties() {
+    return new CalculationServiceProperties();
   }
 }

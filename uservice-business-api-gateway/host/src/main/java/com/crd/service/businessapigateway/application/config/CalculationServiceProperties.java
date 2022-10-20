@@ -6,12 +6,12 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * Application properties for trade service.
+ * Application properties for calculation service.
  */
-@ConfigurationProperties("trade-service")
+@ConfigurationProperties("calculation-service")
 @Setter
 @Getter
-public class ApplicationProperties {
+public class CalculationServiceProperties {
   private String host;
   private int port;
 }

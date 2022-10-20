@@ -38,6 +38,12 @@
 
       <dependency>
         <groupId>com.crd.service</groupId>
+        <artifactId>uservice-calculation.api</artifactId>
+        <version>${api.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.crd.service</groupId>
         <artifactId>uservice-trade.api</artifactId>
         <version>${api.version}</version>
       </dependency>
