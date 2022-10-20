@@ -7,7 +7,7 @@
     </layout>
   </appender>
 
-  <logger name="com.cdr" level="DEBUG">
+  <logger name="com.crd" level="DEBUG">
     <appender-ref ref="CONSOLE" />
   </logger>
 

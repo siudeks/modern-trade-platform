@@ -1,4 +1,4 @@
-package com.cdr.service;
+package com.crd.service;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayNameGeneration;
