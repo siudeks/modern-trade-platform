@@ -4,7 +4,7 @@
 version: '3.8'
 
 # Simple short name to make logs shorter (default name is much longer as copied from folder name)
-name: cdr
+name: crd
 
 services:
   postgres:
