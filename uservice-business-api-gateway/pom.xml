@@ -1,7 +1,7 @@
 <project>
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.crd.api</groupId>
+  <groupId>com.crd.service</groupId>
   <artifactId>business-api-gateway-parent</artifactId>
   <version>${revision}</version>
   <packaging>pom</packaging>

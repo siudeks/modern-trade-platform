@@ -1,4 +1,4 @@
-package com.crd.api.businessapigateway.resource;
+package com.crd.service.businessapigateway.resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.crd.api.businessapigateway.application.model.Trade;
-import com.crd.api.businessapigateway.application.service.TradeService;
+import com.crd.service.businessapigateway.application.model.Trade;
+import com.crd.service.businessapigateway.application.service.TradeService;
 
 /**
  * Controller for Trade operations.

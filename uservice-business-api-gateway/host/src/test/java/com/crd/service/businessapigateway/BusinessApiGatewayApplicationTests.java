@@ -1,4 +1,4 @@
-package com.crd.api.businessapigateway;
+package com.crd.service.businessapigateway;
 
 import org.springframework.boot.test.context.SpringBootTest;
 

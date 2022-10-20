@@ -1,4 +1,4 @@
-package com.crd.api.businessapigateway.application.model;
+package com.crd.service.businessapigateway.application.model;
 
 import java.util.Date;
 

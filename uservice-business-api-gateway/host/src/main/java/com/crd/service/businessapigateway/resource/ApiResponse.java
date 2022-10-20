@@ -1,4 +1,4 @@
-package com.crd.api.businessapigateway.resource;
+package com.crd.service.businessapigateway.resource;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

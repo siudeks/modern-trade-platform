@@ -1,10 +1,10 @@
-package com.crd.api.businessapigateway.application.config;
+package com.crd.service.businessapigateway.application.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.crd.api.businessapigateway.application.service.TradeService;
-import com.crd.api.businessapigateway.application.service.impl.TradeServiceImpl;
+import com.crd.service.businessapigateway.application.service.TradeService;
+import com.crd.service.businessapigateway.application.service.impl.TradeServiceImpl;
 
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;

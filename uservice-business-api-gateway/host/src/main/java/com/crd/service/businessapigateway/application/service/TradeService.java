@@ -1,6 +1,6 @@
-package com.crd.api.businessapigateway.application.service;
+package com.crd.service.businessapigateway.application.service;
 
-import com.crd.api.businessapigateway.application.model.Trade;
+import com.crd.service.businessapigateway.application.model.Trade;
 
 /**
  * Trade REST Service Interface.

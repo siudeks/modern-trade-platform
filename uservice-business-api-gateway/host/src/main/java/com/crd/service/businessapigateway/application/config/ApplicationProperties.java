@@ -1,4 +1,4 @@
-package com.crd.api.businessapigateway.application.config;
+package com.crd.service.businessapigateway.application.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

@@ -1,7 +1,7 @@
-package com.crd.api.businessapigateway.application.service.impl;
+package com.crd.service.businessapigateway.application.service.impl;
 
-import com.crd.api.businessapigateway.application.model.Trade;
-import com.crd.api.businessapigateway.application.service.TradeService;
+import com.crd.service.businessapigateway.application.model.Trade;
+import com.crd.service.businessapigateway.application.service.TradeService;
 import com.crd.common.grpc.TradeServiceGrpc;
 
 import io.grpc.ManagedChannel;
