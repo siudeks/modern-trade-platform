@@ -1,14 +1,19 @@
 # modern-trade-platform
-Hello World trade application
+Microservice-based trading application featuring the following:
+- Containerised Postgres database with liquibase versioning
+- GRPC communication between services with DAPR as the runtime
+- REST API with swagger UI for backend service communication
+- Gherkin testing for each service (not existing yet)
+- GraphQL webAPI (not existing yet)
 
 ## Naming convention for ...
 ### Root folders
+- api - location for the gRPC api proto files for each service, and client building project for java (+ other languages in future if needed)
 - libs-java - reusable code to reuse in uservices, deployed to external maven repository
 - service-* - folder with a local stack service, designed to be run by root docker-compose
 - uservice-* - seperated µservice designed to be compiled, developed and run separately. It may contains init-db subproject to apply database migration
 ### Other folders
-- .api.rpc - definition of gRpc api, exposed in known-localtion for other services/.
-- .api.events - (not existing yet) proposed name for place of avro api, exposed in known-localtion for other services/.
+- .api.events - (not existing yet) proposed name for place of avro api, exposed in known-location for other services/.
 ### Other files
 - Dockerfile.local - image definition used just fo local development process, not to build final images
 
@@ -21,10 +26,27 @@ Hello World trade application
 ## Avoid clash of ports:
 Rule: Use scope 18*** to simplify our management of ports, use different ports to run uservices locally
 ### Business Api Gateway
-- dapr app id: uservice-trade
+- dapr app id: uservice-business-api-gateway
 - HTTP: 18010
 - GRPC: 18011
-### TradeService
+- Swagger URL: http://localhost:8080/swagger-ui/index.html
+
+### Trade Service
 - dapr app id: uservice-trade
 - HTTP: 18120
 - GRPC: 18121
+
+### Calculation Service
+- dapr app id: uservice-calculation
+- HTTP: 18220
+- GRPC: 18221
+
+### Lifecycle Service
+- dapr app id: uservice-lifecycle
+- HTTP: 18320
+- GRPC: 18321
+
+### Market Data Service
+- dapr app id: uservice-market-data
+- HTTP: 18420
+- GRPC: 18421

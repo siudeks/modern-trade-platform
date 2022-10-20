@@ -10,11 +10,11 @@
 - test local database migrations
 - run service from vscode
 
-## Knownw issues
+## Known issues
 - sudo chown -R $USER . (when Failed to clean project)
 
 ## Architectural decisions (simplified version):
 - Use spring to run single uservices
 - Use grpc to communicate between 
-- ? use Gherking to aply acceptance tests for the shole solution
+- ? use Gherkin to apply acceptance tests for the whole solution
 - ? expose Gateway as reusable OpenFeign interfaces to avoid duplication of client/server contracts
