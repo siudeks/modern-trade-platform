@@ -1,6 +1,8 @@
 package com.crd.service.businessapigateway.application.service;
 
+import com.crd.service.businessapigateway.application.model.Order;
 import com.crd.service.businessapigateway.application.model.Trade;
+import com.crd.service.businessapigateway.resource.TradeResponse;
 
 /**
  * Trade REST Service Interface.
@@ -8,7 +10,7 @@ import com.crd.service.businessapigateway.application.model.Trade;
 public interface TradeService {
   String getVersion();
 
-  String createNewTrade(Trade trade);
+  TradeResponse createNewOrder(Order order);
 
   Trade getTrade(String tradeId);
 }

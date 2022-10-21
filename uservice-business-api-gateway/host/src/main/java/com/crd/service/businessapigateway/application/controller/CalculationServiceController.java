@@ -1,4 +1,4 @@
-package com.crd.service.businessapigateway.resource;
+package com.crd.service.businessapigateway.application.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.crd.service.businessapigateway.application.service.CalculationService;
+import com.crd.service.businessapigateway.resource.PriceResponse;
 
 /**
  * Controller for Calculation operations.

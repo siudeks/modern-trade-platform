@@ -18,14 +18,11 @@ service TradeService {
     rpc getTrade (Trade) returns (Trade) {
     }
 
+    // Get Version of the Trade Service
     rpc getVersion(GetVersionRequest) returns (GetVersionResponse) {
     }
-    
-    // Get all trades by any given name
-    rpc getAllTradesByIDList (stream Trade) returns (stream Trade) {
-    }
-    
-    // Get trade By Trade ID
-    rpc getLargestTrade (stream Trade) returns (Trade) {
+
+    // Post a new order to the trade service
+    rpc postNewOrder(CreateOrderRequest) returns (CreateOrderResponse) {
     }
 }

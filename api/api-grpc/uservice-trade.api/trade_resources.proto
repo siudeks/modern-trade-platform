@@ -2,22 +2,24 @@ syntax = "proto3";
 package com.crd.common.grpc;
 import "google/protobuf/any.proto";
 
-message CreateTradeRequest {
-  string name = 1;
-  string description = 2;
-  double price = 3;
-  string userId = 4;
+message CreateOrderRequest {
+  string type = 1;
+  string currency = 2;
+  string index = 3;
+  string maturity = 4;
+  string notional = 5;
+  string trader = 6;
 }
 
-message CreateProductResponse {
-  string productId = 1;
+message CreateOrderResponse {
+  string tradeId = 1;
 }
 
-message GetProductRequest {
-  string productId = 1;
+message GetTradeRequest {
+  string tradeId = 1;
 }
 
-message GetProductResponse {
+message GetTradeResponse {
   string name = 1;
   string description = 2;
   double price = 3;

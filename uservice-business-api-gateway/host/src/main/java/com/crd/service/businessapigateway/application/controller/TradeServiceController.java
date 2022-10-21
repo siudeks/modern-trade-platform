@@ -1,4 +1,4 @@
-package com.crd.service.businessapigateway.resource;
+package com.crd.service.businessapigateway.application.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,8 +11,11 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.crd.service.businessapigateway.application.model.Order;
 import com.crd.service.businessapigateway.application.model.Trade;
 import com.crd.service.businessapigateway.application.service.TradeService;
+import com.crd.service.businessapigateway.resource.ApiResponse;
+import com.crd.service.businessapigateway.resource.TradeResponse;
 
 /**
  * Controller for Trade operations.
@@ -30,18 +33,7 @@ public class TradeServiceController {
   public ResponseEntity<ApiResponse> getVersion() {
     var version = tradeService.getVersion();
     var versionResponse = new ApiResponse(version);
-    return new ResponseEntity<>(versionResponse, HttpStatus.CREATED);
-  }
-
-  /**
-   * Create trade endpoint.
-   */
-  @PostMapping()
-  public ResponseEntity<TradeResponse> createTrade(@RequestHeader(value = "trader") String trader, @RequestBody Trade trade) {
-    trade.setTrader(trader);
-    var tradeId = tradeService.createNewTrade(trade);
-    var tradeResponse = new TradeResponse(tradeId);
-    return new ResponseEntity<>(tradeResponse, HttpStatus.CREATED);
+    return new ResponseEntity<>(versionResponse, HttpStatus.OK);
   }
 
   /**
@@ -51,5 +43,15 @@ public class TradeServiceController {
   public ResponseEntity<Trade> getTrade(@PathVariable String tradeId) {
     var trade = tradeService.getTrade(tradeId);
     return new ResponseEntity<>(trade, HttpStatus.CREATED);
+  }
+
+  /**
+   * Create order endpoint.
+   */
+  @PostMapping("/order")
+  public ResponseEntity<TradeResponse> createOrder(@RequestHeader(value = "trader") String trader, @RequestBody Order order) {
+    order.setTrader(trader);
+    var tradeResponse = tradeService.createNewOrder(order);
+    return new ResponseEntity<>(tradeResponse, HttpStatus.CREATED);
   }
 }
