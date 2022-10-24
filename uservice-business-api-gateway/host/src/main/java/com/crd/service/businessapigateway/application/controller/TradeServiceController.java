@@ -1,6 +1,5 @@
 package com.crd.service.businessapigateway.application.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,14 +16,17 @@ import com.crd.service.businessapigateway.application.service.TradeService;
 import com.crd.service.businessapigateway.resource.ApiResponse;
 import com.crd.service.businessapigateway.resource.TradeResponse;
 
+import lombok.RequiredArgsConstructor;
+
 /**
  * Controller for Trade operations.
  */
 @RestController
 @RequestMapping(value = "/trade")
-public class TradeServiceController {
-  @Autowired
-  private TradeService tradeService;
+@RequiredArgsConstructor
+class TradeServiceController {
+
+  private final TradeService tradeService;
 
   /**
    * Version endpoint.

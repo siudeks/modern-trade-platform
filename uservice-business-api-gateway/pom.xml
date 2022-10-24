@@ -8,6 +8,8 @@
 
   <modules>
     <module>host</module>
+    <module>host-webapi</module>
+    <module>host-webtest</module>
   </modules>
 
   <properties>

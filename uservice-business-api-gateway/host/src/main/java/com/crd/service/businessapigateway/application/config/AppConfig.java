@@ -15,7 +15,7 @@ import io.grpc.ManagedChannelBuilder;
  * Main app config.
  */
 @Configuration
-public class AppConfig {
+class AppConfig {
 
   /**
    * Build managed channel for Trade GRPC connection.
