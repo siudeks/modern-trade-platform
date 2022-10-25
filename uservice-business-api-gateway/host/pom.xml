@@ -17,6 +17,12 @@
 
     <dependency>
       <groupId>com.crd.service</groupId>
+      <artifactId>business-api-gateway-api</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.crd.service</groupId>
       <artifactId>uservice-calculation.api</artifactId>
     </dependency>
 

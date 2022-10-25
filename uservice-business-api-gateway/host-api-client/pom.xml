@@ -1,0 +1,40 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.crd.service</groupId>
+    <artifactId>business-api-gateway-parent</artifactId>
+    <version>${revision}</version>
+  </parent>
+  <artifactId>business-api-gateway-api-client</artifactId>
+
+  <dependencies>
+
+    <dependency>
+      <groupId>com.crd.service</groupId>
+      <artifactId>business-api-gateway-api</artifactId>
+    </dependency>
+
+    <!-- Required to initialize Feign clients. -->
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-openfeign</artifactId>
+    </dependency>
+    <!-- https://stackoverflow.com/a/62257698/1237627 -->
+    <dependency>
+      <groupId>io.github.openfeign</groupId>
+      <artifactId>feign-jackson</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-context</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <optional>true</optional>
+    </dependency>
+
+  </dependencies>
+
+</project>

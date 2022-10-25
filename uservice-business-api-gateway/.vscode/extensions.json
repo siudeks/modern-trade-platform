@@ -8,6 +8,7 @@
         "vscjava.vscode-lombok",
         "pivotal.vscode-spring-boot",
         "zxh404.vscode-proto3",
-        "ms-azuretools.vscode-dapr"
+        "ms-azuretools.vscode-dapr",
+        "alexkrechik.cucumberautocomplete"
     ]
 }
