@@ -1,4 +1,4 @@
-package com.crd.service.businessapigateway.application.model;
+package com.crd.service.businessapigateway.dto;
 
 import lombok.Getter;
 import lombok.Setter;

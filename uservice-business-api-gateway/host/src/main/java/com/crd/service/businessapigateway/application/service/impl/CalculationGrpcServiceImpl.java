@@ -1,7 +1,7 @@
 package com.crd.service.businessapigateway.application.service.impl;
 
 import com.crd.common.grpc.CalculationServiceGrpc;
-import com.crd.service.businessapigateway.application.service.CalculationService;
+import com.crd.service.businessapigateway.application.service.CalculationGrpcService;
 
 import io.grpc.ManagedChannel;
 import lombok.extern.slf4j.Slf4j;
@@ -10,11 +10,11 @@ import lombok.extern.slf4j.Slf4j;
  * Calculation Enpoint implementation.
  */
 @Slf4j
-public class CalculationServiceImpl implements CalculationService {
+public class CalculationGrpcServiceImpl implements CalculationGrpcService {
 
   private ManagedChannel managedChannel;
 
-  public CalculationServiceImpl(ManagedChannel managedChannel) {
+  public CalculationGrpcServiceImpl(ManagedChannel managedChannel) {
     this.managedChannel = managedChannel;
   }
 

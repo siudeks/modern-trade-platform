@@ -1,9 +1,9 @@
 package com.crd.service.businessapigateway.application.service.impl;
 
-import com.crd.service.businessapigateway.application.model.Order;
 import com.crd.service.businessapigateway.application.model.Trade;
-import com.crd.service.businessapigateway.application.service.TradeService;
-import com.crd.service.businessapigateway.resource.TradeResponse;
+import com.crd.service.businessapigateway.application.service.TradeGrpcService;
+import com.crd.service.businessapigateway.dto.Order;
+import com.crd.service.businessapigateway.dto.TradeResponse;
 import com.crd.common.grpc.TradeServiceGrpc;
 import com.crd.common.grpc.TradeResources.CreateOrderRequest;
 
@@ -14,11 +14,11 @@ import lombok.extern.slf4j.Slf4j;
  * Trade Enpoint implementation.
  */
 @Slf4j
-public class TradeServiceImpl implements TradeService {
+public class TradeGrpcServiceImpl implements TradeGrpcService {
 
   private ManagedChannel managedChannel;
 
-  public TradeServiceImpl(ManagedChannel managedChannel) {
+  public TradeGrpcServiceImpl(ManagedChannel managedChannel) {
     this.managedChannel = managedChannel;
   }
 
@@ -51,10 +51,10 @@ public class TradeServiceImpl implements TradeService {
 
     var tradeServiceApiBlockingStub = TradeServiceGrpc.newBlockingStub(managedChannel);
     var response = tradeServiceApiBlockingStub.postNewOrder(orderRequest);
-    var tradeResponse = new TradeResponse(response.getTradeId());
+    var tradeResponse = new TradeResponse().setTradeId(response.getTradeId());
 
-    log.info("Received response from trade service, info {}", tradeResponse);
-    log.info("Trade Service Response {}", tradeResponse);
+    log.info("Received response from trade service, info {}", response.toString());
+    log.info("Trade Service Response {}", tradeResponse.toString());
 
     return tradeResponse;
   }

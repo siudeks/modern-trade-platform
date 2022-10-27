@@ -3,10 +3,10 @@ package com.crd.service.businessapigateway.application.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.crd.service.businessapigateway.application.service.CalculationService;
-import com.crd.service.businessapigateway.application.service.TradeService;
-import com.crd.service.businessapigateway.application.service.impl.CalculationServiceImpl;
-import com.crd.service.businessapigateway.application.service.impl.TradeServiceImpl;
+import com.crd.service.businessapigateway.application.service.CalculationGrpcService;
+import com.crd.service.businessapigateway.application.service.TradeGrpcService;
+import com.crd.service.businessapigateway.application.service.impl.CalculationGrpcServiceImpl;
+import com.crd.service.businessapigateway.application.service.impl.TradeGrpcServiceImpl;
 
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
@@ -41,16 +41,16 @@ class AppConfig {
    * Get the trade service impelementation.
    */
   @Bean
-  public TradeService tradeService() {
-    return new TradeServiceImpl(tradeManagedChannel());
+  public TradeGrpcService tradeService() {
+    return new TradeGrpcServiceImpl(tradeManagedChannel());
   }
 
   /**
    * Get the calculation service impelementation.
    */
   @Bean
-  public CalculationService calculationService() {
-    return new CalculationServiceImpl(calculationManagedChannel());
+  public CalculationGrpcService calculationService() {
+    return new CalculationGrpcServiceImpl(calculationManagedChannel());
   }
 
   /**

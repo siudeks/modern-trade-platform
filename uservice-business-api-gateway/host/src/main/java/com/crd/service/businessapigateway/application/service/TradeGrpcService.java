@@ -1,13 +1,13 @@
 package com.crd.service.businessapigateway.application.service;
 
-import com.crd.service.businessapigateway.application.model.Order;
 import com.crd.service.businessapigateway.application.model.Trade;
-import com.crd.service.businessapigateway.resource.TradeResponse;
+import com.crd.service.businessapigateway.dto.Order;
+import com.crd.service.businessapigateway.dto.TradeResponse;
 
 /**
  * Trade REST Service Interface.
  */
-public interface TradeService {
+public interface TradeGrpcService {
   String getVersion();
 
   TradeResponse createNewOrder(Order order);
