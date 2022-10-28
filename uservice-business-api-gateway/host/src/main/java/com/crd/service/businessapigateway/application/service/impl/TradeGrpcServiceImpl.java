@@ -1,10 +1,11 @@
 package com.crd.service.businessapigateway.application.service.impl;
 
-import java.util.concurrent.TimeUnit;
+import org.springframework.stereotype.Service;
 
 import com.crd.common.grpc.TradeResources.CreateOrderRequest;
 import com.crd.common.grpc.TradeServiceGrpc;
 import com.crd.common.grpc.TradeServiceGrpc.TradeServiceBlockingStub;
+import com.crd.service.businessapigateway.application.config.Closeable;
 import com.crd.service.businessapigateway.application.model.Trade;
 import com.crd.service.businessapigateway.application.service.TradeGrpcService;
 import com.crd.service.businessapigateway.dto.Order;
@@ -16,20 +17,16 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * Trade Enpoint implementation.
  */
+@Service
 @Slf4j
-public class TradeGrpcServiceImpl implements TradeGrpcService, AutoCloseable {
+public class TradeGrpcServiceImpl implements TradeGrpcService {
 
   private final TradeServiceBlockingStub tradeService;
-  private final AutoCloseable disposer;
 
   /** Uses given channel to communicate with backend. Shutdowns the channel properly. */
-  public TradeGrpcServiceImpl(ManagedChannel ownedChannel) {
-    this.tradeService = TradeServiceGrpc.newBlockingStub(ownedChannel);
-    // be sure dispose used resources
-    this.disposer = () -> {
-      ownedChannel.shutdown();
-      ownedChannel.awaitTermination(3, TimeUnit.SECONDS);
-    };
+  public TradeGrpcServiceImpl(Closeable.Of<ManagedChannel> tradeManagedChannel) {
+    var channel = tradeManagedChannel.item();
+    this.tradeService = TradeServiceGrpc.newBlockingStub(channel);
   }
 
   @Override
@@ -71,10 +68,5 @@ public class TradeGrpcServiceImpl implements TradeGrpcService, AutoCloseable {
   public Trade getTrade(String tradeId) {
     // TODO Auto-generated method stub
     return null;
-  }
-
-  @Override
-  public void close() throws Exception {
-    disposer.close();
   }
 }

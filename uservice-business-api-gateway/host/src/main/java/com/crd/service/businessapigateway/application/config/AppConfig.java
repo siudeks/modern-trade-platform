@@ -1,16 +1,16 @@
 package com.crd.service.businessapigateway.application.config;
 
+import java.util.concurrent.TimeUnit;
+import java.util.function.Consumer;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.crd.service.businessapigateway.application.service.CalculationGrpcService;
 import com.crd.service.businessapigateway.application.service.GrpcUtils;
-import com.crd.service.businessapigateway.application.service.TradeGrpcService;
-import com.crd.service.businessapigateway.application.service.impl.CalculationGrpcServiceImpl;
-import com.crd.service.businessapigateway.application.service.impl.TradeGrpcServiceImpl;
 
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
+import lombok.val;
 
 /**
  * Main app config.
@@ -21,38 +21,38 @@ class AppConfig {
   /**
    * Build managed channel for Trade GRPC connection.
    */
-  ManagedChannel tradeManagedChannel() {
+  Closeable.Of<ManagedChannel> tradeManagedChannel() {
     var daprAppId = tradeServiceProperties().getDaprAppId();
-    return ManagedChannelBuilder.forAddress(tradeServiceProperties().getHost(), tradeServiceProperties().getPort())
+    var channel = ManagedChannelBuilder.forAddress(tradeServiceProperties().getHost(), tradeServiceProperties().getPort())
         .intercept(GrpcUtils.addTargetDaprApplicationId(daprAppId))
         .usePlaintext()
         .build();
+    return asCloseable(channel);
   }
 
   /**
-   * Build managed channel for Calculation GRPC connection.
+   * Build autloseable managed channel for Calculation GRPC connection.
    */
-  ManagedChannel calculationManagedChannel() {
-    return ManagedChannelBuilder
+  @Bean
+  Closeable.Of<ManagedChannel> calculationManagedChannel() {
+    var channel = ManagedChannelBuilder
         .forAddress(calculationServiceProperties().getHost(), calculationServiceProperties().getPort())
         .usePlaintext()
         .build();
+    return asCloseable(channel);
   }
 
-  /**
-   * Get the trade service impelementation.
-   */
-  @Bean
-  public TradeGrpcService tradeService() {
-    return new TradeGrpcServiceImpl(tradeManagedChannel());
-  }
-
-  /**
-   * Get the calculation service impelementation.
-   */
-  @Bean
-  public CalculationGrpcService calculationService() {
-    return new CalculationGrpcServiceImpl(calculationManagedChannel());
+  private static Closeable.Of<ManagedChannel> asCloseable(ManagedChannel item) {
+    val someNotTestedShutdownForChannelsInSeconds = 3;
+    Consumer<ManagedChannel> disposer = (it) -> {
+      item.shutdown();
+      try {
+        item.awaitTermination(someNotTestedShutdownForChannelsInSeconds, TimeUnit.SECONDS);
+      } catch (InterruptedException e) {
+        Thread.currentThread().interrupt();
+      }
+    };
+    return Closeable.of(item, disposer);
   }
 
   /**
