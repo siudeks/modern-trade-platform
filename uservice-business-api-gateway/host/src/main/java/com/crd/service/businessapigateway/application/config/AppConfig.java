@@ -22,9 +22,9 @@ class AppConfig {
    * Build managed channel for Trade GRPC connection.
    */
   @Bean
-  Closeable.Of<ManagedChannel> tradeManagedChannel() {
-    var daprAppId = tradeServiceProperties().getDaprAppId();
-    var channel = ManagedChannelBuilder.forAddress(tradeServiceProperties().getHost(), tradeServiceProperties().getPort())
+  Closeable.Of<ManagedChannel> tradeManagedChannel(TradeServiceProperties props) {
+    var daprAppId = props.getDaprAppId();
+    var channel = ManagedChannelBuilder.forAddress(props.getHost(), props.getPort())
         .intercept(GrpcUtils.addTargetDaprApplicationId(daprAppId))
         .usePlaintext()
         .build();
@@ -35,9 +35,11 @@ class AppConfig {
    * Build autocseable managed channel for Calculation GRPC connection.
    */
   @Bean
-  Closeable.Of<ManagedChannel> calculationManagedChannel() {
+  Closeable.Of<ManagedChannel> calculationManagedChannel(CalculationServiceProperties props) {
+    var daprAppId = props.getDaprAppId();
     var channel = ManagedChannelBuilder
-        .forAddress(calculationServiceProperties().getHost(), calculationServiceProperties().getPort())
+        .forAddress(props.getHost(), props.getPort())
+        .intercept(GrpcUtils.addTargetDaprApplicationId(daprAppId))
         .usePlaintext()
         .build();
     return asCloseable(channel);

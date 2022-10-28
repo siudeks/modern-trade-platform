@@ -12,6 +12,7 @@ import lombok.Setter;
 @Setter
 @Getter
 public class CalculationServiceProperties {
+  private String daprAppId;
   private String host;
   private int port;
 }

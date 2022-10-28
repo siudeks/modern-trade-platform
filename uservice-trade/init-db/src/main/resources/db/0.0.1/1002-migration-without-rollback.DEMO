@@ -1,0 +1,12 @@
+# Migration script used just to demo migration without rollback.
+# Feel free to remove if you don't need that example.
+databaseChangeLog:
+  - changeSet:
+      id: sqlexample
+      author: liquibasedocs
+      changes:
+        - sql:
+            sql: SELECT 1
+      rollback:
+        - sql:
+            sql: SELECT -1

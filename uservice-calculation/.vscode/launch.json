@@ -10,6 +10,9 @@
             "request": "launch",
             "mainClass": "com.crd.service.calculationservice.CalculationServiceApplication",
             "projectName": "calculation-service",
+            "env": {
+                "SPRING_PROFILES_ACTIVE": "local"
+            },
             "preLaunchTask": "dapr-debug",
             "postDebugTask": "daprd-down"
         },
