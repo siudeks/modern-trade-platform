@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.crd.service.businessapigateway.application.service.CalculationGrpcService;
+import com.crd.service.businessapigateway.application.service.GrpcUtils;
 import com.crd.service.businessapigateway.application.service.TradeGrpcService;
 import com.crd.service.businessapigateway.application.service.impl.CalculationGrpcServiceImpl;
 import com.crd.service.businessapigateway.application.service.impl.TradeGrpcServiceImpl;

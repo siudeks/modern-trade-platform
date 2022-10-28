@@ -5,7 +5,7 @@ import io.grpc.Metadata;
 import lombok.experimental.UtilityClass;
 import io.grpc.stub.MetadataUtils;
 
-/** Some static helper methods around gRpc. */
+/** Some static helper methods around gRpc. Candidate to be moved to shared library. */
 @UtilityClass
 public class GrpcUtils {
   

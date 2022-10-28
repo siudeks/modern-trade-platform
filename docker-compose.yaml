@@ -47,17 +47,3 @@ services:
       postgres:
         condition: service_started
   
-
-  # Alternative tracing. May be removed commented as we use zipkin by default, used just as demo example for developers
-  # https://v1-10.docs.dapr.io/operations/monitoring/tracing/jaeger/
-  # How to use existing zipkin? https://v1-10.docs.dapr.io/operations/monitoring/tracing/zipkin/
-  dapr-tracing-alternative:
-    image: jaegertracing/all-in-one:1.22
-    container_name: dapr-tracing-alternative
-    environment:
-      - COLLECTOR_ZIPKIN_HOST_PORT=9412
-    ports:
-      - 16686:16686
-      - 9412:9412
-  
-

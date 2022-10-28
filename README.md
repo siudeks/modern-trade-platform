@@ -62,3 +62,4 @@ Rule: Use scope 18*** to simplify our management of ports, use different ports t
 - Deployment to Kubernetes
 - Tests per µservice
 - Mapping gRpc models without NPE exceptions (using proper mapper)
+- GraphQL uservice
