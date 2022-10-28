@@ -21,6 +21,7 @@ class AppConfig {
   /**
    * Build managed channel for Trade GRPC connection.
    */
+  @Bean
   Closeable.Of<ManagedChannel> tradeManagedChannel() {
     var daprAppId = tradeServiceProperties().getDaprAppId();
     var channel = ManagedChannelBuilder.forAddress(tradeServiceProperties().getHost(), tradeServiceProperties().getPort())
