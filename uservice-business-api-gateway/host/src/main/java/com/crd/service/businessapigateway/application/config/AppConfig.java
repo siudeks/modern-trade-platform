@@ -31,7 +31,7 @@ class AppConfig {
   }
 
   /**
-   * Build autloseable managed channel for Calculation GRPC connection.
+   * Build autocseable managed channel for Calculation GRPC connection.
    */
   @Bean
   Closeable.Of<ManagedChannel> calculationManagedChannel() {
