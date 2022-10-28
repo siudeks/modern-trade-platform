@@ -3,7 +3,7 @@ package com.crd.service.businessapigateway.application.config;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -17,7 +17,7 @@ import lombok.val;
  * Main app config.
  */
 @Configuration
-@EnableConfigurationProperties(value = { CalculationServiceProperties.class, TradeServiceProperties.class })
+@ConfigurationPropertiesScan 
 class AppConfig {
 
   /**

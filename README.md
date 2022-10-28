@@ -56,10 +56,9 @@ Rule: Use scope 18*** to simplify our management of ports, use different ports t
 - 9411, 18912: jaeger (tracibility alternative, http://localhost:16686/)
 
 ### TODO
-- Autocloseable channels, demo with Spring Dev tools
 - Database example (JPA)
-- Integration with OTL / Application Insight
 - Deployment to Kubernetes
 - Tests per µservice
 - Mapping gRpc models without NPE exceptions (using proper mapper)
 - GraphQL uservice
+- To discuss: Monitoring - Integration with OTL / Application Insight
