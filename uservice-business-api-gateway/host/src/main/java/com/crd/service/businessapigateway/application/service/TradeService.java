@@ -5,9 +5,10 @@ import com.crd.service.businessapigateway.application.model.Trade;
 import com.crd.service.businessapigateway.resource.TradeResponse;
 
 /**
- * Trade REST Service Interface.
+ * Trade gRpc Service Interface.
  */
 public interface TradeService {
+
   String getVersion();
 
   TradeResponse createNewOrder(Order order);

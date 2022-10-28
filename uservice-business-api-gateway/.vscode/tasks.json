@@ -5,7 +5,10 @@
 			"appId": "uservice-business-api-gateway",
 			"appPort": 18010,
 			"appProtocol": "http",
-			"componentsPath": "../.components",
+			"componentsPath": "../.dapr/components",
+			"config": "../.dapr/config.yaml",
+			"httpPort": 3500,
+			"grpcPort": 50001,
 			"label": "dapr-debug",
 			"type": "dapr"
 		},

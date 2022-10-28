@@ -10,6 +10,9 @@
             "request": "launch",
             "mainClass": "com.crd.service.tradeservice.TradeServiceApplication",
             "projectName": "trade-service",
+            "env": {
+                "SPRING_PROFILES_ACTIVE": "local"
+            },
             "preLaunchTask": "dapr-debug",
             "postDebugTask": "daprd-down"
         },

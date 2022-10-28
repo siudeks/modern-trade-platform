@@ -12,13 +12,12 @@ import com.tngtech.archunit.lang.ArchRule;
 import com.tngtech.archunit.lang.CompositeArchRule;
 import com.tngtech.archunit.library.GeneralCodingRules;
 
-@AnalyzeClasses(packagesOf = PackageMarker.class, 
-  importOptions = {ImportOption.DoNotIncludeTests.class, ImportOption.DoNotIncludeJars.class})
+@AnalyzeClasses(packagesOf = PackageMarker.class, importOptions = { ImportOption.DoNotIncludeTests.class })
 class ArchTests {
 
   @ArchTest
-  static final ArchRule implement_general_coding_practices =
-      CompositeArchRule.of(GeneralCodingRules.NO_CLASSES_SHOULD_ACCESS_STANDARD_STREAMS)
+  static final ArchRule implement_general_coding_practices = CompositeArchRule
+      .of(GeneralCodingRules.NO_CLASSES_SHOULD_ACCESS_STANDARD_STREAMS)
       .and(GeneralCodingRules.NO_CLASSES_SHOULD_THROW_GENERIC_EXCEPTIONS)
       .and(GeneralCodingRules.NO_CLASSES_SHOULD_USE_JAVA_UTIL_LOGGING)
       .and(GeneralCodingRules.NO_CLASSES_SHOULD_USE_JODATIME)
@@ -31,10 +30,18 @@ class ArchTests {
       .should().notBePublic()
       .as("Configuration classes don't need to be public");
 
-    @ArchTest
-    static final ArchRule noPublicControllers = classes()
-        .that().areAnnotatedWith(RestController.class)
-        .should().notBePublic()
-        .as("RestController classes don't need to be public");
-    
+  @ArchTest
+  static final ArchRule noPublicControllers = classes()
+      .that().areAnnotatedWith(RestController.class)
+      .should().notBePublic()
+      .as("RestController classes don't need to be public");
+
+  // TODO: Make it working, currently 'Layer 'Grpc' is empty'
+  //   @ArchTest
+  //   static final ArchRule limitedGrpcAccess = layeredArchitecture()
+  //       .consideringAllDependencies()
+  //       .layer("Grpc").definedBy("com.crd.common.grpc..")
+  //       .layer("GrpcApi").definedBy("com.crd.service.businessapigateway.application.service.impl")
+  //       .whereLayer("Grpc").mayOnlyBeAccessedByLayers("GrpcApi");
+
 }

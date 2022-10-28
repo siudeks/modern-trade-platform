@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.crd.service.businessapigateway.application.service.CalculationService;
+import com.crd.service.businessapigateway.application.service.GrpcUtils;
 import com.crd.service.businessapigateway.application.service.TradeService;
 import com.crd.service.businessapigateway.application.service.impl.CalculationServiceImpl;
 import com.crd.service.businessapigateway.application.service.impl.TradeServiceImpl;
@@ -20,21 +21,22 @@ class AppConfig {
   /**
    * Build managed channel for Trade GRPC connection.
    */
-  @Bean
-  public ManagedChannel tradeManagedChannel() {
+  ManagedChannel tradeManagedChannel() {
+    var daprAppId = tradeServiceProperties().getDaprAppId();
     return ManagedChannelBuilder.forAddress(tradeServiceProperties().getHost(), tradeServiceProperties().getPort())
-      .usePlaintext()
-      .build();
+        .intercept(GrpcUtils.addTargetDaprApplicationId(daprAppId))
+        .usePlaintext()
+        .build();
   }
 
   /**
    * Build managed channel for Calculation GRPC connection.
    */
-  @Bean
-  public ManagedChannel calculationManagedChannel() {
-    return ManagedChannelBuilder.forAddress(calculationServiceProperties().getHost(), calculationServiceProperties().getPort())
-      .usePlaintext()
-      .build();
+  ManagedChannel calculationManagedChannel() {
+    return ManagedChannelBuilder
+        .forAddress(calculationServiceProperties().getHost(), calculationServiceProperties().getPort())
+        .usePlaintext()
+        .build();
   }
 
   /**

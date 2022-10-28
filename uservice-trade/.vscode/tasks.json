@@ -5,7 +5,8 @@
 			"appId": "uservice-trade",
 			"appPort": 18121,
 			"appProtocol": "grpc",
-			"componentsPath": "../.components",
+			"componentsPath": "../.dapr/components",
+			"config": "../.dapr/config.yaml",
 			"label": "dapr-debug",
 			"type": "dapr"
 		},

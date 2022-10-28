@@ -12,6 +12,7 @@ import lombok.Setter;
 @Setter
 @Getter
 public class TradeServiceProperties {
+  private String daprAppId;
   private String host;
   private int port;
 }

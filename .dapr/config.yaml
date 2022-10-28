@@ -1,0 +1,15 @@
+# Local equivalent of ~/.dapr/config.yaml
+apiVersion: dapr.io/v1alpha1
+kind: Configuration
+metadata:
+  name: daprConfig
+  namespace: default
+spec:
+  tracing:
+    samplingRate: "1"
+    zipkin:
+      # Send to local zipkin intance
+      # endpointAddress: "http://localhost:9411/api/v2/spans"
+      # Send to local Jaeger instance
+      endpointAddress: "http://localhost:9412/api/v2/spans"
+

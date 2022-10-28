@@ -5,7 +5,8 @@
 			"appId": "uservice-calculation",
 			"appPort": 18221,
 			"appProtocol": "grpc",
-			"componentsPath": "../.components",
+			"componentsPath": "../.dapr/components",
+			"config": "../.dapr/config.yaml",
 			"label": "dapr-debug",
 			"type": "dapr"
 		},

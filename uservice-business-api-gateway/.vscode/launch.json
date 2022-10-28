@@ -10,6 +10,9 @@
             "request": "launch",
             "mainClass": "com.crd.service.businessapigateway.BusinessApiGatewayApplication",
             "projectName": "business-api-gateway",
+            "env": {
+                "SPRING_PROFILES_ACTIVE": "local"
+            },
             "preLaunchTask": "dapr-debug",
             "postDebugTask": "daprd-down"
         },
