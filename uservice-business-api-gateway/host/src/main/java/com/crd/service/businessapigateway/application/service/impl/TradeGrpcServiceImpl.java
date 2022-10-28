@@ -1,15 +1,11 @@
 package com.crd.service.businessapigateway.application.service.impl;
 
-import com.crd.common.grpc.TradeResources.CreateOrderRequest;
-
-import java.util.concurrent.TimeUnit;
-
-import com.crd.common.grpc.TradeServiceGrpc;
-import com.crd.common.grpc.TradeServiceGrpc.TradeServiceBlockingStub;
-import com.crd.service.businessapigateway.application.model.Order;
 import com.crd.service.businessapigateway.application.model.Trade;
-import com.crd.service.businessapigateway.application.service.TradeService;
-import com.crd.service.businessapigateway.resource.TradeResponse;
+import com.crd.service.businessapigateway.application.service.TradeGrpcService;
+import com.crd.service.businessapigateway.dto.Order;
+import com.crd.service.businessapigateway.dto.TradeResponse;
+import com.crd.common.grpc.TradeServiceGrpc;
+import com.crd.common.grpc.TradeResources.CreateOrderRequest;
 
 import io.grpc.ManagedChannel;
 import lombok.val;
@@ -19,19 +15,13 @@ import lombok.extern.slf4j.Slf4j;
  * Trade Enpoint implementation.
  */
 @Slf4j
-public class TradeServiceImpl implements TradeService, AutoCloseable {
+public class TradeGrpcServiceImpl implements TradeGrpcService {
 
   private final TradeServiceBlockingStub tradeService;
   private final AutoCloseable disposer;
 
-  /** Default constructor with assumption of the give channel is owned by the created instance. */
-  public TradeServiceImpl(ManagedChannel ownedChannel) {
-    tradeService = TradeServiceGrpc.newBlockingStub(ownedChannel);
-    disposer = () -> {
-      ownedChannel.shutdown();
-      val someTimeoutForGrpcChannel = 3;
-      ownedChannel.awaitTermination(someTimeoutForGrpcChannel, TimeUnit.SECONDS);
-    };
+  public TradeGrpcServiceImpl(ManagedChannel managedChannel) {
+    this.managedChannel = managedChannel;
   }
 
   @Override
@@ -60,11 +50,12 @@ public class TradeServiceImpl implements TradeService, AutoCloseable {
         .setType(order.getType())
         .build();
 
-    var response = tradeService.postNewOrder(orderRequest);
-    var tradeResponse = new TradeResponse(response.getTradeId());
+    var tradeServiceApiBlockingStub = TradeServiceGrpc.newBlockingStub(managedChannel);
+    var response = tradeServiceApiBlockingStub.postNewOrder(orderRequest);
+    var tradeResponse = new TradeResponse().setTradeId(response.getTradeId());
 
-    log.info("Received response from trade service, info {}", tradeResponse);
-    log.info("Trade Service Response {}", tradeResponse);
+    log.info("Received response from trade service, info {}", response.toString());
+    log.info("Trade Service Response {}", tradeResponse.toString());
 
     return tradeResponse;
   }
