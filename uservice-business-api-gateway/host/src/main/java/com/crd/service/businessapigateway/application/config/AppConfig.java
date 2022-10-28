@@ -3,6 +3,7 @@ package com.crd.service.businessapigateway.application.config;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -16,6 +17,7 @@ import lombok.val;
  * Main app config.
  */
 @Configuration
+@EnableConfigurationProperties(value = { CalculationServiceProperties.class, TradeServiceProperties.class })
 class AppConfig {
 
   /**
@@ -45,6 +47,7 @@ class AppConfig {
     return asCloseable(channel);
   }
 
+  // packs non closeable item to AutoCloseable element
   private static Closeable.Of<ManagedChannel> asCloseable(ManagedChannel item) {
     val someNotTestedShutdownForChannelsInSeconds = 3;
     Consumer<ManagedChannel> disposer = (it) -> {
@@ -56,21 +59,5 @@ class AppConfig {
       }
     };
     return Closeable.of(item, disposer);
-  }
-
-  /**
-   * Get the trade service properties.
-   */
-  @Bean
-  public TradeServiceProperties tradeServiceProperties() {
-    return new TradeServiceProperties();
-  }
-
-  /**
-   * Get the calculation service properties.
-   */
-  @Bean
-  public CalculationServiceProperties calculationServiceProperties() {
-    return new CalculationServiceProperties();
   }
 }
