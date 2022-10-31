@@ -51,10 +51,6 @@ Rule: Use scope 18*** to simplify our management of ports, use different ports t
 - HTTP: 18420
 - GRPC: 18421
 
-### DAPR configuration (values below may be removed later on as they are default)
-- 9411: zipkin (for tracibility, see UI @ http://localhost:9411/)
-- 9411, 18912: jaeger (tracibility alternative, http://localhost:16686/)
-
 ### TODO
 - Database example (JPA)
 - Deployment to Kubernetes
